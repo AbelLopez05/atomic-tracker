@@ -1,82 +1,353 @@
-/* Estilos personalizados para Atomic Tracker */
+/* =====================================================
+   ATOMIC TRACKER 2025 - ADVANCED DASHBOARD DESIGN
+   Inspirado en @my_habitts con mejoras de Ing. Sistemas
+   ===================================================== */
 
-/* Optimización Mobile-First */
-@media (max-width: 768px) {
-    .stCheckbox>label {
-        font-size: 1.1rem !important;
-        padding: 0.8rem !important;
-    }
-
-    .metric-card {
-        padding: 1rem !important;
-        margin: 0.5rem 0 !important;
-    }
-
-    .block-container {
-        padding: 1rem !important;
-    }
+/* Variables CSS para tema consistente */
+:root {
+    --primary-blue: #2E5BFF;
+    --success-green: #00FF88;
+    --danger-red: #FF3B3B;
+    --warning-orange: #FFB800;
+    --dark-bg: #0A0E1A;
+    --card-bg: #131829;
+    --card-hover: #1A1F3A;
+    --text-primary: #FFFFFF;
+    --text-secondary: #8B93B0;
+    --border-color: #1F2437;
+    --gradient-blue: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-success: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+    --shadow-glow: 0 0 20px rgba(46, 91, 255, 0.3);
 }
 
-/* Tarjetas de métricas */
-.metric-card {
-    background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+/* Reset y base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--dark-bg) !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    color: var(--text-primary) !important;
+}
+
+/* Ocultar elementos de Streamlit */
+#MainMenu {
+    visibility: hidden;
+}
+
+footer {
+    visibility: hidden;
+}
+
+header {
+    visibility: hidden;
+}
+
+/* Layout principal con sidebar */
+.main .block-container {
+    padding: 1rem 2rem !important;
+    max-width: 100% !important;
+}
+
+/* =====================================================
+   DASHBOARD LATERAL (SIDEBAR)
+   ===================================================== */
+
+.sidebar .sidebar-content {
+    background: var(--card-bg) !important;
+    border-right: 1px solid var(--border-color);
+}
+
+/* Estilo para métricas de sidebar */
+.sidebar-metric {
+    background: var(--dark-bg);
+    padding: 1.2rem;
     border-radius: 12px;
-    padding: 1.5rem;
     margin: 1rem 0;
-    border-left: 4px solid #00ff41;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-/* Checkboxes mejorados */
-.stCheckbox {
-    background: #1a1a1a;
-    padding: 1rem;
-    border-radius: 8px;
-    margin: 0.5rem 0;
+    border-left: 4px solid var(--primary-blue);
     transition: all 0.3s ease;
 }
 
-.stCheckbox:hover {
-    background: #252525;
+.sidebar-metric:hover {
     transform: translateX(5px);
+    box-shadow: var(--shadow-glow);
 }
 
-/* Badges de nivel */
-.badge {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    font-weight: bold;
-    margin: 0.5rem;
+/* =====================================================
+   TARJETAS DE MÉTRICAS PRINCIPALES
+   ===================================================== */
+
+[data-testid="stMetricValue"] {
+    font-size: 2.5rem !important;
+    font-weight: 800 !important;
+    background: var(--gradient-blue);
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
 }
 
-/* Barras de progreso */
-.progress-bar {
-    height: 30px;
-    border-radius: 15px;
-    background: #1e1e1e;
+[data-testid="stMetricLabel"] {
+    font-size: 0.9rem !important;
+    color: var(--text-secondary) !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+[data-testid="stMetricDelta"] {
+    font-size: 0.85rem !important;
+}
+
+/* Contenedor de métricas */
+.metric-container {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
     overflow: hidden;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.progress-fill {
+.metric-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient-blue);
+}
+
+.metric-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    border-color: var(--primary-blue);
+}
+
+/* =====================================================
+   CHECKBOXES ESTILO 2025
+   ===================================================== */
+
+.stCheckbox {
+    background: var(--card-bg) !important;
+    padding: 1rem 1.2rem !important;
+    border-radius: 12px !important;
+    margin: 0.6rem 0 !important;
+    border: 1px solid var(--border-color) !important;
+    transition: all 0.3s ease !important;
+    position: relative;
+}
+
+.stCheckbox:hover {
+    background: var(--card-hover) !important;
+    border-color: var(--primary-blue) !important;
+    transform: translateX(8px);
+    box-shadow: -4px 0 0 var(--primary-blue);
+}
+
+.stCheckbox label {
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    color: var(--text-primary) !important;
+}
+
+/* Checkbox checked state */
+.stCheckbox input[type="checkbox"]:checked~label {
+    color: var(--success-green) !important;
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+/* =====================================================
+   TARJETAS DE HÁBITOS (GRID STYLE)
+   ===================================================== */
+
+.habit-card {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 1.2rem;
+    margin: 0.7rem 0;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.habit-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
     height: 100%;
-    background: linear-gradient(90deg, #00ff41 0%, #00cc33 100%);
-    transition: width 0.5s ease;
+    background: var(--primary-blue);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+.habit-card:hover::before {
+    transform: scaleY(1);
+}
+
+.habit-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    border-color: var(--primary-blue);
+}
+
+.habit-card-completed {
+    background: rgba(0, 255, 136, 0.08) !important;
+    border-color: var(--success-green) !important;
+}
+
+.habit-card-blocked {
+    opacity: 0.5;
+    filter: grayscale(70%);
+}
+
+/* =====================================================
+   GRÁFICOS Y VISUALIZACIONES
+   ===================================================== */
+
+.js-plotly-plot {
+    border-radius: 16px !important;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* =====================================================
+   BARRAS DE PROGRESO ANIMADAS
+   ===================================================== */
+
+.progress-bar-container {
+    background: var(--dark-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    height: 50px;
+    position: relative;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
+    margin: 1.5rem 0;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: var(--gradient-success);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-weight: bold;
+    color: var(--dark-bg);
+    font-weight: 800;
+    font-size: 1.3rem;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
 }
 
-/* Animaciones */
-@keyframes fadeIn {
+.progress-bar-fill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+/* =====================================================
+   BOTONES ESTILO 2025
+   ===================================================== */
+
+.stButton>button {
+    width: 100%;
+    padding: 1rem 2rem !important;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    border-radius: 12px !important;
+    border: 2px solid var(--primary-blue) !important;
+    background: var(--gradient-blue) !important;
+    color: white !important;
+    transition: all 0.3s ease !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(46, 91, 255, 0.4);
+}
+
+.stButton>button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(46, 91, 255, 0.6);
+    border-color: var(--success-green) !important;
+}
+
+/* =====================================================
+   TABS (Reportes)
+   ===================================================== */
+
+.stTabs [data-baseweb="tab-list"] {
+    gap: 1rem;
+    background: var(--card-bg);
+    padding: 1rem;
+    border-radius: 12px;
+}
+
+.stTabs [data-baseweb="tab"] {
+    padding: 1rem 2rem !important;
+    background: var(--dark-bg);
+    border-radius: 8px;
+    color: var(--text-secondary) !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.stTabs [data-baseweb="tab"]:hover {
+    background: var(--card-hover);
+    color: var(--primary-blue) !important;
+}
+
+.stTabs [aria-selected="true"] {
+    background: var(--gradient-blue) !important;
+    color: white !important;
+}
+
+/* =====================================================
+   ALERTAS PERSONALIZADAS
+   ===================================================== */
+
+.stAlert {
+    border-radius: 12px !important;
+    border-left: 4px solid !important;
+    padding: 1.2rem !important;
+    margin: 1rem 0 !important;
+    backdrop-filter: blur(10px);
+}
+
+.stAlert[data-baseweb="notification"]>div:first-child {
+    font-weight: 600 !important;
+}
+
+/* =====================================================
+   ANIMACIONES
+   ===================================================== */
+
+@keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(30px);
     }
 
     to {
@@ -85,32 +356,139 @@
     }
 }
 
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
 .fade-in {
-    animation: fadeIn 0.5s ease;
+    animation: fadeInUp 0.6s ease-out;
 }
 
-/* Alertas personalizadas */
-.custom-alert {
-    padding: 1rem;
-    border-radius: 8px;
-    margin: 1rem 0;
-    font-weight: 500;
+.pulse-animation {
+    animation: pulse 2s infinite;
 }
 
-.alert-success {
-    background: rgba(0, 255, 65, 0.1);
-    border-left: 4px solid #00ff41;
-    color: #00ff41;
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
+
+@media (max-width: 768px) {
+    .main .block-container {
+        padding: 1rem 0.5rem !important;
+        /* Más espacio lateral en móvil */
+    }
+
+    /* Métricas más compactas en móvil */
+    [data-testid="stMetricValue"] {
+        font-size: 1.4rem !important;
+    }
+
+    [data-testid="stMetricLabel"] {
+        font-size: 0.8rem !important;
+    }
+
+    .habit-card {
+        padding: 0.8rem;
+        margin: 0.4rem 0;
+    }
+
+    .progress-bar-container {
+        height: 25px;
+    }
+
+    .progress-bar-fill {
+        font-size: 0.8rem;
+    }
+
+    .stButton>button {
+        padding: 0.6rem 0.5rem !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* Header ajustes */
+    h1 {
+        font-size: 1.5rem !important;
+    }
+
+    h3 {
+        font-size: 1.1rem !important;
+    }
+
+    /* Ajustes específicos para tarjetas de hábito en móvil */
+    .habit-card-content {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 0.5rem;
+    }
+
+    .habit-card-points {
+        margin: 0 !important;
+        text-align: left !important;
+        align-self: flex-start;
+    }
+
+    /* Tabs scroll horizontal */
+    .stTabs [data-baseweb="tab-list"] {
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        padding-bottom: 5px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .stTabs [data-baseweb="tab"] {
+        padding: 0.5rem 1rem !important;
+        flex: 0 0 auto;
+        /* No encoger tabs */
+    }
 }
 
-.alert-warning {
-    background: rgba(255, 152, 0, 0.1);
-    border-left: 4px solid #ff9800;
-    color: #ff9800;
+@media (max-width: 480px) {
+    [data-testid="stMetricValue"] {
+        font-size: 1.2rem !important;
+    }
 }
 
-.alert-error {
-    background: rgba(244, 67, 54, 0.1);
-    border-left: 4px solid #f44336;
-    color: #f44336;
+/* =====================================================
+   SCROLLBAR PERSONALIZADO
+   ===================================================== */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dark-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-blue);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--success-green);
+}
+
+/* =====================================================
+   EFECTOS DE NEÓN (OPCIONAL)
+   ===================================================== */
+
+.neon-border {
+    box-shadow: 0 0 10px var(--primary-blue),
+        0 0 20px var(--primary-blue),
+        0 0 30px var(--primary-blue);
+}
+
+.text-glow {
+    text-shadow: 0 0 10px var(--success-green),
+        0 0 20px var(--success-green);
 }

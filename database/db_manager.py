@@ -53,7 +53,7 @@ class DatabaseManager:
         finally:
             conn.close()
     
-    def marcar_habito(self, fecha: date, habito_id: str, bloque_id: str, puntos: int) -> bool:
+    def marcar_habito(self, fecha: date, habito_id: str, bloque_id: str, puntos: int, max_puntos: int = 175) -> bool:
         """Marca un hábito como completado"""
         conn = self._get_connection()
         try:
@@ -71,7 +71,7 @@ class DatabaseManager:
             self._actualizar_racha(conn, habito_id, fecha)
             
             # Recalcular métricas del día
-            self._recalcular_metricas_dia(conn, fecha)
+            self._recalcular_metricas_dia(conn, fecha, max_puntos)
             
             conn.commit()
             return True
@@ -82,7 +82,7 @@ class DatabaseManager:
         finally:
             conn.close()
     
-    def desmarcar_habito(self, fecha: date, habito_id: str) -> bool:
+    def desmarcar_habito(self, fecha: date, habito_id: str, max_puntos: int = 175) -> bool:
         """Desmarca un hábito"""
         conn = self._get_connection()
         try:
@@ -92,7 +92,7 @@ class DatabaseManager:
             """, (fecha.isoformat(), habito_id))
             
             # Recalcular métricas
-            self._recalcular_metricas_dia(conn, fecha)
+            self._recalcular_metricas_dia(conn, fecha, max_puntos)
             
             conn.commit()
             return True
@@ -118,7 +118,7 @@ class DatabaseManager:
     # MÉTRICAS Y ESTADÍSTICAS
     # ========================
     
-    def _recalcular_metricas_dia(self, conn: sqlite3.Connection, fecha: date):
+    def _recalcular_metricas_dia(self, conn: sqlite3.Connection, fecha: date, max_puntos: int):
         """Recalcula puntos y porcentaje del día"""
         cursor = conn.execute("""
             SELECT COALESCE(SUM(puntos), 0) as total_puntos
@@ -128,10 +128,12 @@ class DatabaseManager:
         
         total_puntos = cursor.fetchone()['total_puntos']
         
-        # Puntos máximos posibles (calculado desde config más adelante)
-        # Por ahora usamos un valor fijo
-        puntos_maximos = 175  # Suma de todos los puntos posibles
-        porcentaje = (total_puntos / puntos_maximos * 100) if puntos_maximos > 0 else 0
+        # Puntos máximos posibles
+        puntos_maximos = max_puntos
+        if puntos_maximos > 0:
+            porcentaje = min(100.0, (total_puntos / puntos_maximos * 100))
+        else:
+            porcentaje = 0.0
         
         conn.execute("""
             UPDATE registros 
