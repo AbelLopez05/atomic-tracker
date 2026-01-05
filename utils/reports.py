@@ -39,7 +39,7 @@ class ReportGenerator:
         
         return {
             'fecha': fecha.isoformat(),
-            'dia_semana': self.DIAS_ES[fecha.strftime('%A')],
+            'dia_semana': ReportGenerator.DIAS_ES[fecha.strftime('%A')],
             'puntos': metricas['puntos'],
             'porcentaje': metricas['porcentaje'],
             'habitos_completados': habitos_completados_count,
@@ -96,11 +96,11 @@ class ReportGenerator:
             'promedio_porcentaje': round(promedio, 1),
             'total_puntos': int(semana_data['puntos_totales'].sum()),
             'mejor_dia': {
-                'fecha': f"{self.DIAS_ES[mejor_dia['fecha'].strftime('%A')]} {mejor_dia['fecha'].day}/{mejor_dia['fecha'].month}",
+                'fecha': f"{ReportGenerator.DIAS_ES[mejor_dia['fecha'].strftime('%A')]} {mejor_dia['fecha'].day}/{mejor_dia['fecha'].month}",
                 'porcentaje': round(mejor_dia['porcentaje_cumplimiento'], 1)
             },
             'peor_dia': {
-                'fecha': f"{self.DIAS_ES[peor_dia['fecha'].strftime('%A')]} {peor_dia['fecha'].day}/{peor_dia['fecha'].month}",
+                'fecha': f"{ReportGenerator.DIAS_ES[peor_dia['fecha'].strftime('%A')]} {peor_dia['fecha'].day}/{peor_dia['fecha'].month}",
                 'porcentaje': round(peor_dia['porcentaje_cumplimiento'], 1)
             },
             'meta_semanal_cumplida': int(dias_meta) >= 6,
@@ -153,8 +153,7 @@ class ReportGenerator:
         por_semana = mes_data.groupby('semana')['porcentaje_cumplimiento'].mean()
         
         return {
-        return {
-            'periodo': f"{self.MESES_ES[mes]} {año}",
+            'periodo': f"{ReportGenerator.MESES_ES[mes]} {año}",
             'mes': mes,
             'año': año,
             'dias_registrados': len(mes_data),
@@ -221,13 +220,13 @@ class ReportGenerator:
             'periodo': f"Q{trimestre} {año}",
             'trimestre': trimestre,
             'año': año,
-            'meses': [self.MESES_ES[m] for m in range(mes_inicio, mes_fin + 1)],
+            'meses': [ReportGenerator.MESES_ES[m] for m in range(mes_inicio, mes_fin + 1)],
             'dias_registrados': len(trim_data),
             'dias_meta_cumplida': int(dias_meta),
             'promedio_porcentaje': round(trim_data['porcentaje_cumplimiento'].mean(), 1),
             'total_puntos': int(trim_data['puntos_totales'].sum()),
-            'mejor_mes': self.MESES_ES[int(por_mes['porcentaje_cumplimiento'].idxmax())] if not por_mes.empty else None,
-            'promedio_por_mes': {self.MESES_ES[mes]: round(datos['porcentaje_cumplimiento'], 1) 
+            'mejor_mes': ReportGenerator.MESES_ES[int(por_mes['porcentaje_cumplimiento'].idxmax())] if not por_mes.empty else None,
+            'promedio_por_mes': {ReportGenerator.MESES_ES[mes]: round(datos['porcentaje_cumplimiento'], 1) 
                                   for mes, datos in por_mes.iterrows()},
             'crecimiento': ReportGenerator._calcular_crecimiento_trimestral(trim_data)
         }
@@ -315,10 +314,10 @@ class ReportGenerator:
             'dias_meta_cumplida': int(dias_meta),
             'promedio_porcentaje': round(año_data['porcentaje_cumplimiento'].mean(), 1),
             'total_puntos': int(año_data['puntos_totales'].sum()),
-            'mejor_mes': self.MESES_ES[int(por_mes['porcentaje_cumplimiento'].idxmax())] if not por_mes.empty else None,
-            'peor_mes': self.MESES_ES[int(por_mes['porcentaje_cumplimiento'].idxmin())] if not por_mes.empty else None,
+            'mejor_mes': ReportGenerator.MESES_ES[int(por_mes['porcentaje_cumplimiento'].idxmax())] if not por_mes.empty else None,
+            'peor_mes': ReportGenerator.MESES_ES[int(por_mes['porcentaje_cumplimiento'].idxmin())] if not por_mes.empty else None,
             'racha_maxima_año': ReportGenerator._calcular_racha_maxima(año_data),
-            'promedio_por_mes': {self.MESES_ES[mes]: round(datos['porcentaje_cumplimiento'], 1) 
+            'promedio_por_mes': {ReportGenerator.MESES_ES[mes]: round(datos['porcentaje_cumplimiento'], 1) 
                                   for mes, datos in por_mes.iterrows()},
             'transformacion': ReportGenerator._analizar_transformacion_anual(año_data)
         }
