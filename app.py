@@ -12,6 +12,7 @@ from datetime import datetime, date, timedelta
 import json
 import os
 import calendar
+import pytz
 
 # Imports locales
 from database.db_manager import DatabaseManager
@@ -62,7 +63,8 @@ reports = ReportGenerator()
 
 # Estado de sesión
 if 'fecha_actual' not in st.session_state:
-    st.session_state.fecha_actual = date.today()
+    tz = pytz.timezone('America/Lima')
+    st.session_state.fecha_actual = datetime.now(tz).date()
 
 if 'habitos_completados' not in st.session_state:
     st.session_state.habitos_completados = db.obtener_habitos_dia(st.session_state.fecha_actual)
