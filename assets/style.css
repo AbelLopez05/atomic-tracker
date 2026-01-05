@@ -1,0 +1,116 @@
+/* Estilos personalizados para Atomic Tracker */
+
+/* Optimización Mobile-First */
+@media (max-width: 768px) {
+    .stCheckbox>label {
+        font-size: 1.1rem !important;
+        padding: 0.8rem !important;
+    }
+
+    .metric-card {
+        padding: 1rem !important;
+        margin: 0.5rem 0 !important;
+    }
+
+    .block-container {
+        padding: 1rem !important;
+    }
+}
+
+/* Tarjetas de métricas */
+.metric-card {
+    background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-left: 4px solid #00ff41;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Checkboxes mejorados */
+.stCheckbox {
+    background: #1a1a1a;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 0.5rem 0;
+    transition: all 0.3s ease;
+}
+
+.stCheckbox:hover {
+    background: #252525;
+    transform: translateX(5px);
+}
+
+/* Badges de nivel */
+.badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: bold;
+    margin: 0.5rem;
+}
+
+/* Barras de progreso */
+.progress-bar {
+    height: 30px;
+    border-radius: 15px;
+    background: #1e1e1e;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00ff41 0%, #00cc33 100%);
+    transition: width 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease;
+}
+
+/* Alertas personalizadas */
+.custom-alert {
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    font-weight: 500;
+}
+
+.alert-success {
+    background: rgba(0, 255, 65, 0.1);
+    border-left: 4px solid #00ff41;
+    color: #00ff41;
+}
+
+.alert-warning {
+    background: rgba(255, 152, 0, 0.1);
+    border-left: 4px solid #ff9800;
+    color: #ff9800;
+}
+
+.alert-error {
+    background: rgba(244, 67, 54, 0.1);
+    border-left: 4px solid #f44336;
+    color: #f44336;
+}

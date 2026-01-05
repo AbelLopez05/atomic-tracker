@@ -1,0 +1,195 @@
+{
+    "bloques": [
+        {
+            "id": "fase1_arranque",
+            "nombre": "🌅 FASE 1: Arranque del Sistema",
+            "subtitulo": "07:00 - 09:00 AM",
+            "identidad": "Disciplinado",
+            "color": "#FF6B35",
+            "habitos": [
+                {
+                    "id": "despertar_protocolo_frio",
+                    "nombre": "07:00 - Despertar + Protocolo Anti-Frío",
+                    "descripcion": "Alarma lejos → Casaca inmediata → NO TOCAR CELULAR",
+                    "puntos": 20,
+                    "critico": true,
+                    "hora_ideal": "07:00"
+                },
+                {
+                    "id": "tender_cama",
+                    "nombre": "07:10 - Primera Victoria: Tender la Cama",
+                    "descripcion": "Estirada, no perfecta. 'Soy ordenado'",
+                    "puntos": 15,
+                    "critico": false
+                },
+                {
+                    "id": "aseo_postura",
+                    "nombre": "07:15 - Aseo Personal + Postura Correcta",
+                    "descripcion": "Baño/Cremas + Gato-Vaca 1min + Hombros atrás",
+                    "puntos": 20,
+                    "critico": false
+                },
+                {
+                    "id": "desayuno_proteico",
+                    "nombre": "07:45 - Desayuno Potente (Proteína)",
+                    "descripcion": "Huevos/Batido para masa muscular",
+                    "puntos": 15,
+                    "critico": false
+                },
+                {
+                    "id": "lectura_matinal",
+                    "nombre": "Lectura: 3 páginas Hábitos Atómicos",
+                    "descripcion": "Durante desayuno (opcional si comes solo)",
+                    "puntos": 10,
+                    "critico": false
+                }
+            ]
+        },
+        {
+            "id": "fase2_productivo",
+            "nombre": "🌞 FASE 2: Bloque Productivo",
+            "subtitulo": "09:00 - 13:00 PM",
+            "identidad": "Activo",
+            "color": "#4ECDC4",
+            "habitos": [
+                {
+                    "id": "bloque_domestico",
+                    "nombre": "09:00 - Bloque Doméstico (Movimiento)",
+                    "descripcion": "Limpieza/Lavar ropa/Cocina → Actividad física ligera (NEAT)",
+                    "puntos": 15,
+                    "critico": false
+                },
+                {
+                    "id": "bloque_enfoque",
+                    "nombre": "11:00 - Bloque de Enfoque (1 hora)",
+                    "descripcion": "Lectura técnica/Estudio → Celular en otro cuarto → NO PC/PELIS",
+                    "puntos": 25,
+                    "critico": true
+                },
+                {
+                    "id": "almuerzo_nutritivo",
+                    "nombre": "13:00 - Almuerzo Completo",
+                    "descripcion": "Comer bastante para subir de peso",
+                    "puntos": 10,
+                    "critico": false
+                }
+            ]
+        },
+        {
+            "id": "fase3_trabajo_profundo",
+            "nombre": "🚀 FASE 3: Trabajo Profundo",
+            "subtitulo": "14:30 - 18:00 PM",
+            "identidad": "Ingeniero",
+            "color": "#FFD93D",
+            "habitos": [
+                {
+                    "id": "bloque_proyectos",
+                    "nombre": "14:30 - Proyectos de Ingeniería",
+                    "descripcion": "Código/Cursos/Proyectos → Pomodoro 25/5 → NO Dota/Netflix antes 6PM",
+                    "puntos": 30,
+                    "critico": true,
+                    "bloquea": [
+                        "dota2"
+                    ]
+                },
+                {
+                    "id": "pausas_activas",
+                    "nombre": "Pausas Activas (Cada hora)",
+                    "descripcion": "Ángel de Pared / Estiramiento en marco de puerta",
+                    "puntos": 10,
+                    "critico": false
+                }
+            ]
+        },
+        {
+            "id": "fase4_recompensa",
+            "nombre": "🎮 FASE 4: Recompensa y Cierre",
+            "subtitulo": "18:00 - 22:00 PM",
+            "identidad": "Equilibrado",
+            "color": "#9B59B6",
+            "habitos": [
+                {
+                    "id": "peaje_ejercicio",
+                    "nombre": "18:00 - PEAJE DEL DOTA: Rutina de Ejercicio",
+                    "descripcion": "Sentadillas + Flexiones + Puente → ¡OBLIGATORIO!",
+                    "puntos": 35,
+                    "critico": true,
+                    "bloquea": [
+                        "dota2"
+                    ]
+                },
+                {
+                    "id": "dota2",
+                    "nombre": "Dota 2 (Ganado con Ejercicio)",
+                    "descripcion": "Juega sin culpa, te lo ganaste",
+                    "puntos": 0,
+                    "critico": false,
+                    "requiere": [
+                        "peaje_ejercicio",
+                        "bloque_proyectos"
+                    ]
+                },
+                {
+                    "id": "cena_nutritiva",
+                    "nombre": "20:00 - Cena Nutritiva",
+                    "descripcion": "Comida saludable",
+                    "puntos": 10,
+                    "critico": false
+                },
+                {
+                    "id": "protocolo_apagado",
+                    "nombre": "21:30 - Protocolo de Apagado",
+                    "descripcion": "Apagar PC + Casaca lista + Celular lejos + Marcar hábitos",
+                    "puntos": 20,
+                    "critico": true
+                },
+                {
+                    "id": "dormir_temprano",
+                    "nombre": "Dormir 22:00-22:30 (Hormona crecimiento)",
+                    "descripcion": "Clave para dejar de ser flaco",
+                    "puntos": 15,
+                    "critico": false
+                }
+            ]
+        },
+        {
+            "id": "habitos_criticos",
+            "nombre": "🔥 Hábitos Críticos del Día",
+            "subtitulo": "Rastreados todo el día",
+            "identidad": "Maestro de Hábitos",
+            "color": "#E74C3C",
+            "habitos": [
+                {
+                    "id": "cero_porno",
+                    "nombre": "Cero Porno (Racha de Pureza)",
+                    "descripcion": "Control mental total",
+                    "puntos": 40,
+                    "critico": true,
+                    "privado": true
+                },
+                {
+                    "id": "cero_celular_manana",
+                    "nombre": "NO Tocar Celular al Despertar",
+                    "descripcion": "Si fallas, pierdes la mañana",
+                    "puntos": 25,
+                    "critico": true
+                },
+                {
+                    "id": "postura_consciente",
+                    "nombre": "Postura Consciente (Todo el día)",
+                    "descripcion": "Hombros atrás + Ángel de pared",
+                    "puntos": 15,
+                    "critico": false
+                }
+            ]
+        }
+    ],
+    "configuracion": {
+        "meta_diaria": 85,
+        "puntos_nivel_1": 100,
+        "puntos_nivel_2": 500,
+        "puntos_nivel_3": 1500,
+        "puntos_nivel_4": 5000,
+        "hora_corte_dia": "03:00"
+    }
+}
